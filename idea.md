@@ -17,7 +17,7 @@ The project aims to deliver a fully functional job platform featuring a **modern
 
 ---
 
-## Key Features / Modules
+## Key Features
 
 ### 1. Job Seeker Features
 - Sign up / Login  
