@@ -2,7 +2,7 @@
 
 
 
-# 💼 Simple Job Portal
+# 💼 Job Portal
 
 ## 🚀 Project Overview
 
