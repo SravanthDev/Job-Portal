@@ -96,8 +96,10 @@ job-portal-simple/
 └── README.md
 ```
 
+![WhatsApp Image 2025-11-01 at 12 43 12 AM](https://github.com/user-attachments/assets/fa3d1fdc-2ec2-489e-87cb-4f478fb67e3c)
+
 ---
-![alt text](<WhatsApp Image 2025-10-31 at 16.18.46.jpeg>)
+
 ### **1. Users Table**
 
 | **Field** | **Type** | **Description** |
