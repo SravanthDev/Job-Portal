@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './auth.css';
 
 const API = '/api/auth';
 
@@ -39,8 +40,8 @@ export default function Auth({ initialMode = 'login', onSuccess, navigate }) {
     <div className="auth-screen">
       <div className="auth-container">
       <div className="switcher">
-        <button onClick={() => { setMode('login'); setError(''); }}>Login</button>
-        <button onClick={() => { setMode('register'); setError(''); }}>Signup</button>
+        <button className={`tab ${mode === 'login' ? 'active' : ''}`} onClick={() => { setMode('login'); setError(''); }}>Login</button>
+        <button className={`tab ${mode === 'register' ? 'active' : ''}`} onClick={() => { setMode('register'); setError(''); }}>Signup</button>
       </div>
       <form className="auth-form" onSubmit={handleSubmit}>
         {isRegister && (
