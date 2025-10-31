@@ -97,7 +97,7 @@ job-portal-simple/
 ```
 
 ---
-
+![alt text](<WhatsApp Image 2025-10-31 at 16.18.46.jpeg>)
 ### **1. Users Table**
 
 | **Field** | **Type** | **Description** |
@@ -224,3 +224,4 @@ Build a scalable job platform,
 Learn full-stack integration,
 Implement CRUD operations,
 Add real-time and export features.
+
