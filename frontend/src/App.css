@@ -38,18 +38,70 @@
   color: #888;
 }
 
-.auth-container { max-width: 350px; margin: 64px auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 8px #eee; }
-.auth-form { display: flex; flex-direction: column; gap: 1rem; }
-.auth-form input, .auth-form select, .auth-form button { padding: 0.5rem; font-size: 1rem; }
-.switcher { display: flex; justify-content: center; margin-bottom: 1rem; gap: 1rem; }
-.switcher button { padding: 0.5rem 1rem; }
-.error { color: red; font-size: 0.97rem; border: 1px solid #ffc9c9; background: #fff6f6; border-radius: 4px; padding: 0.5rem; }
-.welcome { text-align: center; margin-top: 72px; }
+.auth-container {
+  max-width: 350px;
+  margin: 64px auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #eee;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.auth-form input,
+.auth-form select,
+.auth-form button {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.switcher {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+.switcher button {
+  padding: 0.5rem 1rem;
+}
+.error {
+  color: red;
+  font-size: 0.97rem;
+  border: 1px solid #ffc9c9;
+  background: #fff6f6;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+.welcome {
+  text-align: center;
+  margin-top: 72px;
+}
 
-
-.auth-screen { min-height: 100vh; display: grid; place-items: center; background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 50%, #93c5fd 100%); padding: 24px; }
-.auth-container { width: 360px; }
-.auth-form input, .auth-form select { background: #fff; border: 1px solid #e5e7eb; }
-.auth-form button { background: #0ea5e9; color: #fff; }
-.switcher button { background: #0f172a; color: #fff; }
-.switcher button:hover { border-color: transparent; }
+.auth-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 50%, #93c5fd 100%);
+  padding: 24px;
+}
+.auth-container {
+  width: 360px;
+}
+.auth-form input,
+.auth-form select {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+.auth-form button {
+  background: #0ea5e9;
+  color: #fff;
+}
+.switcher button {
+  background: #0f172a;
+  color: #fff;
+}
+.switcher button:hover {
+  border-color: transparent;
+}
