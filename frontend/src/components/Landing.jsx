@@ -4,7 +4,7 @@ function Navbar({ navigate }) {
   return (
     <header className="navbar">
       <div className="nav-inner">
-        <div className="brand">Job Portal</div>
+        <div className="brand">UDYOGAM</div>
         <nav className="nav-links">
           <a href="#jobs">Jobs</a>
           <a href="#prep">Job Prep</a>
