@@ -58,6 +58,7 @@
   color: #0ea5e9;
   font-weight: 700;
   margin-bottom: 8px;
+  font-family: "Elms Sans", sans-serif;
 }
 .hero .title {
   margin: 0 0 8px;
@@ -68,6 +69,7 @@
 .hero .subtitle {
   color: #4b5563;
   margin-bottom: 20px;
+  font-family: "Elms Sans", sans-serif;
 }
 
 .search-bar {
@@ -92,6 +94,7 @@
   border: none;
   border-radius: 8px;
   font-weight: 600;
+  font-family: "Elms Sans", sans-serif;
 }
 
 .hero-cta {
@@ -115,11 +118,13 @@
 
 .companies {
   margin: 48px 0 64px;
+  size: 20px;
 }
 .companies-title {
   text-align: center;
   color: #6b7280;
   margin-bottom: 12px;
+  font-family: "Elms Sans", sans-serif;
 }
 .marquee {
   overflow: hidden;

@@ -31,10 +31,7 @@ function Hero({ navigate }) {
         <button>Search jobs</button>
       </div>
 
-      <div className="hero-cta">
-        <button className="btn" onClick={() => navigate?.('/signup')}>Create free account</button>
-        <button className="btn ghost" onClick={() => navigate?.('/login')}>Login</button>
-      </div>
+    
     </section>
   );
 }
@@ -67,8 +64,9 @@ export default function Landing({ navigate }) {
     { name: 'Zomato', logo: '/src/assets/zomatologo.png', href: 'https://www.zomato.com' },
     { name: 'Uber', logo: '/src/assets/blinkit.png', href: 'https://www.blinkit.com' },
     { name: 'Tech Mahindra', logo: '/src/assets/TechMahindra.png', href: 'https://www.techmahindra.com' },
-    { name: 'NST', logo: '/src/assets/NSTlogo.webp', href: '#' },
-    { name: 'Swiggy', logo: '/src/assets/swiggylogo.png', href: 'https://www.swiggy.com' }
+    { name: 'NST', logo: '/src/assets/NSTlogo.png', href: '#' },
+    { name: 'Swiggy', logo: '/src/assets/swiggylogo.png', href: 'https://www.swiggy.com' },
+    {name: 'Sozou', logo: '/src/assets/sozoulogo.jpeg', href: 'https://www.sozou.in' }
   ];
 
   return (

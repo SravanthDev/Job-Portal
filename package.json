@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "backend/index.js",
   "scripts": {
-    "dev": "node backend/index.js"
+    "dev": "node backend/index.js",
+    "nodemon" : "nodemon backend/index.js"
   },
   "repository": {
     "type": "git",
