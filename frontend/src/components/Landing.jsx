@@ -16,7 +16,6 @@ function Navbar({ navigate }) {
     </header>
   );
 }
-
 function Hero({ navigate }) {
   return (
     <section className="hero">
@@ -28,10 +27,10 @@ function Hero({ navigate }) {
         <input placeholder="Search jobs by company, role..." />
         <input placeholder="Your Experience" />
         <input placeholder="Search for an area or city" />
-        <button>Search jobs</button>
+        <button className="btn liquid">
+          Search Jobs
+        </button>
       </div>
-
-    
     </section>
   );
 }
