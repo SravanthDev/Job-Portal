@@ -1,10 +1,25 @@
 @import url(https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Momo+Trust+Display&display=swap);
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
 .landing {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background: #efece3;
 }
+
+/* ===================== NAVBAR ===================== */
 
 .navbar {
   position: sticky;
@@ -13,7 +28,8 @@
   border-bottom: 1px solid #eee;
   z-index: 10;
 }
-.nav-inner {
+
+.navbar-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -21,32 +37,97 @@
   justify-content: space-between;
   padding: 12px 20px;
 }
+
 .brand {
   font-weight: 700;
   font-size: 38px;
-  color: #2b7bf2;
+  color: #275df5;
   font-family: "Momo Trust Display", sans-serif;
 }
-.nav-links {
+
+.navigation-menu {
   font-family: "Elms Sans", sans-serif;
   display: flex;
   gap: 16px;
   align-items: center;
 }
-.nav-links a {
+
+/* Normal nav links (Jobs, Job Prep, Resume Tools) */
+.navigation-menu a {
   color: #213547;
 }
-.nav-links .cta {
-  padding: 8px 12px;
-  background: #0ea5e9;
+
+/* Auth buttons (Login + Signup) */
+.navigation-menu .auth-button {
+  padding: 8px 30px;
+  background: #275df5;
   color: #fff;
-  border-radius: 6px;
+  border-radius: 50px;
+  border: 1px solid #275df5;
 }
-.nav-links .cta.outline {
-  background: transparent;
-  color: #0ea5e9;
-  border: 1px solid #0ea5e9;
+
+.navigation-menu .auth-button.outline {
+  background: #fc7358;
+  color: #fff;
+  border: 1px solid #fc7358;
 }
+
+/* ===================== NAV HOVER ANIMATION ===================== */
+.navigation-menu a:not(.auth-button) {
+  position: relative;
+  display: block;
+  padding: 6px 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 400;
+  transition: .5s;
+  color: #262626;
+  z-index: 1;
+}
+
+.navigation-menu a:not(.auth-button):before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid #3b3a3a;
+  border-bottom: 2px solid #262626;
+  transform: scaleY(2);
+  opacity: 0;
+  transition: .3s;
+}
+
+.navigation-menu a:not(.auth-button):after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #262626;
+  transform: scale(0);
+  opacity: 0;
+  transition: .3s;
+  z-index: -1;
+}
+
+.navigation-menu a:not(.auth-button):hover {
+  color: #fff;
+}
+
+.navigation-menu a:not(.auth-button):hover:before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.navigation-menu a:not(.auth-button):hover:after {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* ===================== HERO SECTION ===================== */
 
 .hero {
   max-width: 1100px;
@@ -54,48 +135,66 @@
   padding: 0 20px;
   text-align: left;
 }
+
 .hero .label {
   color: #0ea5e9;
   font-weight: 700;
   margin-bottom: 8px;
   font-family: "Elms Sans", sans-serif;
 }
+
 .hero .title {
   margin: 0 0 8px;
   font-size: 48px;
   line-height: 1.1;
   color: #2c2c2c;
 }
+
 .hero .subtitle {
   color: #4b5563;
   margin-bottom: 20px;
   font-family: "Elms Sans", sans-serif;
 }
 
+/* ===================== SEARCH BAR ===================== */
+
 .search-bar {
   display: grid;
   grid-template-columns: 1fr 300px 2fr auto;
-  height: 45px;
-  gap: 13px;
+  align-items: center;
+  gap: 12px;
   background: #fff;
   border: 1px solid #e5e7eb;
-  padding: 20px;
+  padding: 12px 16px;
   border-radius: 50px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
+
 .search-bar input {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 12px;
+  padding: 12px 16px;
   font-size: 14px;
-  height: 20px;
+  height: 45px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: "Elms Sans", sans-serif;
 }
+
+.search-bar input:focus {
+  border-color: #3fcf3d;
+}
+
+.search-bar input::placeholder {
+  color: #9ca3af;
+}
+
 .search-bar button {
   position: relative;
-  padding: 12px 24px;
+  padding: 12px 28px;
   font-size: 14px;
   font-weight: 600;
-  color: #14171b;
+  color: #000000;
   border: 2px solid #3fcf3d;
   border-radius: 8px;
   cursor: pointer;
@@ -103,11 +202,13 @@
   font-family: "Elms Sans", sans-serif;
   white-space: nowrap;
   height: 45px;
+  background: #fff;
+  transition: all 0.3s ease;
 }
 
-/* Liquid animation effect */
+/* Liquid effect */
 .search-bar button.liquid {
-  background: linear-gradient(90deg, #3fcf3d 0%, #3ada65 100%) 
+  background: linear-gradient(90deg, #3fcf3d 0%, #3ada65 100%)
     no-repeat calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
   transition: 0.3s var(--t, 0s),
     background-position 0.3s calc(0.3s - var(--t, 0s));
@@ -119,15 +220,18 @@
   color: #fff;
   border-color: #58cb73;
   box-shadow: 0 0 15px rgba(57, 179, 63, 0.6),
-              0 0 30px rgba(63, 207, 61, 0.8);
+              0 0 30px rgba(63, 207, 61, 0.2);
 }
 
-.hero-cta {
+/* ===================== HERO BUTTONS ===================== */
+
+.hero-action-buttons {
   display: flex;
   gap: 12px;
   margin-top: 18px;
 }
-.btn {
+
+.action-button {
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -135,32 +239,39 @@
   color: #fff;
   font-weight: 600;
 }
-.btn.ghost {
+
+.action-button-outline {
   background: transparent;
   color: #0ea5e9;
   border-color: #0ea5e9;
 }
 
+/* ===================== COMPANIES MARQUEE ===================== */
+
 .companies {
   margin: 48px 0 64px;
-  size: 20px;
+  font-size: 20px;
 }
-.companies-title {
+
+.trusted-companies-heading {
   text-align: center;
   color: #6b7280;
   margin-bottom: 12px;
   font-family: "Elms Sans", sans-serif;
 }
+
 .marquee {
   overflow: hidden;
 }
-.marquee-track {
+
+.company-carousel-track {
   display: flex;
   gap: 48px;
   width: max-content;
   animation: scroll 28s linear infinite;
   padding: 12px 0;
 }
+
 .company {
   display: inline-flex;
   align-items: center;
@@ -172,6 +283,7 @@
   background: #fff;
   padding: 14px;
 }
+
 .company img {
   max-height: 72px;
   max-width: 200px;
@@ -179,6 +291,8 @@
   height: auto;
   object-fit: contain;
 }
+
+/* ===================== ANIMATIONS ===================== */
 
 @keyframes scroll {
   0% {
@@ -189,10 +303,13 @@
   }
 }
 
+/* ===================== RESPONSIVE ===================== */
+
 @media (max-width: 768px) {
   .hero .title {
     font-size: 36px;
   }
+
   .search-bar {
     grid-template-columns: 1fr;
   }

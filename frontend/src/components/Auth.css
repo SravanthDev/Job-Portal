@@ -16,21 +16,21 @@
   overflow: hidden;
 }
 
-.switcher {
+.auth-mode-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.switcher button {
+.auth-mode-tabs button {
   border-radius: 0;
   border: none;
   padding: 14px 0;
   background: transparent;
   color: #374151;
 }
-.switcher .tab {
+.auth-mode-tabs .auth-tab-button {
   font-weight: 600;
 }
-.switcher .tab.active {
+.auth-mode-tabs .auth-tab-button-active {
   background: #eff6ff;
   color: #0ea5e9;
   box-shadow: inset 0 -2px 0 #0ea5e9;

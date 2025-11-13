@@ -3,14 +3,14 @@ import './landing.css';
 function Navbar({ navigate }) {
   return (
     <header className="navbar">
-      <div className="nav-inner">
+      <div className="navbar-container">
         <div className="brand">UDYOGAM</div>
-        <nav className="nav-links">
+        <nav className="navigation-menu">
           <a href="#jobs">Jobs</a>
           <a href="#prep">Job Prep</a>
           <a href="#tools">Resume Tools</a>
-          <a className="cta" href="/login" onClick={(e) => { e.preventDefault(); navigate?.('/login'); }}>Login</a>
-          <a className="cta outline" href="/signup" onClick={(e) => { e.preventDefault(); navigate?.('/signup'); }}>Signup</a>
+          <a className="auth-button" href="/login" onClick={(e) => { e.preventDefault(); navigate?.('/login'); }}>Login</a>
+          <a className="auth-button outline" href="/signup" onClick={(e) => { e.preventDefault(); navigate?.('/signup'); }}>Signup</a>
         </nav>
       </div>
     </header>
@@ -27,7 +27,7 @@ function Hero({ navigate }) {
         <input placeholder="Search jobs by company, role..." />
         <input placeholder="Your Experience" />
         <input placeholder="Search for an area or city" />
-        <button className="btn liquid">
+        <button className="action-button liquid">
           Search Jobs
         </button>
       </div>
@@ -39,9 +39,9 @@ function CompanyCarousel({ companies }) {
   const items = [...companies, ...companies];
   return (
     <section className="companies">
-      <p className="companies-title">Trusted by top companies</p>
+      <p className="trusted-companies-heading">Trusted by top companies</p>
       <div className="marquee">
-        <div className="marquee-track">
+        <div className="company-carousel-track">
           {items.map((c, i) => (
             <a className="company" href={c.href} key={`${c.name}-${i}`} target="_blank" rel="noreferrer">
               <img src={c.logo} alt={c.name} />

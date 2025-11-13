@@ -39,9 +39,9 @@ export default function Auth({ initialMode = 'login', onSuccess, navigate }) {
   return (
     <div className="auth-screen">
       <div className="auth-container">
-      <div className="switcher">
-        <button className={`tab ${mode === 'login' ? 'active' : ''}`} onClick={() => { setMode('login'); setError(''); }}>Login</button>
-        <button className={`tab ${mode === 'register' ? 'active' : ''}`} onClick={() => { setMode('register'); setError(''); }}>Signup</button>
+      <div className="auth-mode-tabs">
+        <button className={`auth-tab-button ${mode === 'login' ? 'auth-tab-button-active' : ''}`} onClick={() => { setMode('login'); setError(''); }}>Login</button>
+        <button className={`auth-tab-button ${mode === 'register' ? 'auth-tab-button-active' : ''}`} onClick={() => { setMode('register'); setError(''); }}>Signup</button>
       </div>
       <form className="auth-form" onSubmit={handleSubmit}>
         {isRegister && (
