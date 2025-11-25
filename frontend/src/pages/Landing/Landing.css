@@ -38,6 +38,18 @@ body {
   padding: 12px 20px;
 }
 
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .brand {
   font-weight: 700;
   font-size: 38px;
@@ -45,86 +57,81 @@ body {
   font-family: "Momo Trust Display", sans-serif;
 }
 
-.navigation-menu {
+.nav-links {
   font-family: "Elms Sans", sans-serif;
   display: flex;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
 }
 
 /* Normal nav links (Jobs, Job Prep, Resume Tools) */
-.navigation-menu a {
+.nav-links a {
   color: #213547;
+  text-decoration: none;
 }
 
 /* Auth buttons (Login + Signup) */
-.navigation-menu .auth-button {
+.auth-button {
   padding: 8px 30px;
   background: #275df5;
   color: #fff;
   border-radius: 50px;
   border: 1px solid #275df5;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.navigation-menu .auth-button.outline {
+.auth-button:hover {
+  background: #1e4dd8;
+  border-color: #1e4dd8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 93, 245, 0.3);
+}
+
+.auth-button.outline {
   background: #fc7358;
   color: #fff;
   border: 1px solid #fc7358;
 }
 
+.auth-button.outline:hover {
+  background: #e85d42;
+  border-color: #e85d42;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(252, 115, 88, 0.3);
+}
+
 /* ===================== NAV HOVER ANIMATION ===================== */
-.navigation-menu a:not(.auth-button) {
+.nav-links a {
   position: relative;
-  display: block;
-  padding: 6px 50px;
-  text-transform: uppercase;
+  display: inline-block;
+  padding: 8px 20px;
   text-decoration: none;
-  font-weight: 400;
-  transition: .5s;
+  font-weight: 500;
+  font-size: 15px;
   color: #262626;
-  z-index: 1;
+  transition: color 0.3s ease;
 }
 
-.navigation-menu a:not(.auth-button):before {
+.nav-links a:after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-top: 2px solid #3b3a3a;
-  border-bottom: 2px solid #262626;
-  transform: scaleY(2);
-  opacity: 0;
-  transition: .3s;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #275df5, #3fcf3d);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
 }
 
-.navigation-menu a:not(.auth-button):after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #262626;
-  transform: scale(0);
-  opacity: 0;
-  transition: .3s;
-  z-index: -1;
+.nav-links a:hover {
+  color: #275df5;
 }
 
-.navigation-menu a:not(.auth-button):hover {
-  color: #fff;
-}
-
-.navigation-menu a:not(.auth-button):hover:before {
-  transform: scaleY(1);
-  opacity: 1;
-}
-
-.navigation-menu a:not(.auth-button):hover:after {
-  transform: scaleY(1);
-  opacity: 1;
+.nav-links a:hover:after {
+  width: 80%;
 }
 
 /* ===================== HERO SECTION ===================== */
@@ -162,65 +169,113 @@ body {
   display: grid;
   grid-template-columns: 1fr 300px 2fr auto;
   align-items: center;
-  gap: 12px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  padding: 12px 16px;
-  border-radius: 50px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  gap: 14px;
+  background: linear-gradient(145deg, #ffffff 0%, #fafafa 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  padding: 14px 20px;
+  border-radius: 60px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.search-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 60px;
+  padding: 2px;
+  background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.search-bar:hover {
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .search-bar input {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 14px;
-  height: 45px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-size: 14.5px;
+  height: 48px;
   outline: none;
-  transition: border-color 0.2s;
+  background: #ffffff;
+  transition: all 0.3s ease;
   font-family: "Elms Sans", sans-serif;
+  font-weight: 500;
+}
+
+.search-bar input:hover {
+  border-color: #d1d5db;
+  background: #fafafa;
 }
 
 .search-bar input:focus {
   border-color: #3fcf3d;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(63, 207, 61, 0.1),
+    0 2px 8px rgba(63, 207, 61, 0.15);
+  transform: translateY(-1px);
 }
 
 .search-bar input::placeholder {
   color: #9ca3af;
+  font-weight: 400;
 }
 
 .search-bar button {
   position: relative;
-  padding: 12px 28px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #000000;
-  border: 2px solid #3fcf3d;
-  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
   overflow: hidden;
   font-family: "Elms Sans", sans-serif;
   white-space: nowrap;
-  height: 45px;
-  background: #fff;
-  transition: all 0.3s ease;
+  height: 48px;
+  background: linear-gradient(135deg, #3fcf3d 0%, #2eb82e 50%, #1fa01f 100%);
+  box-shadow: 0 4px 15px rgba(63, 207, 61, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  letter-spacing: 0.5px;
 }
 
-/* Liquid effect */
-.search-bar button.liquid {
-  background: linear-gradient(90deg, #3fcf3d 0%, #3ada65 100%)
-    no-repeat calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
-  transition: 0.3s var(--t, 0s),
-    background-position 0.3s calc(0.3s - var(--t, 0s));
+.search-bar button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
 }
 
-.search-bar button.liquid:hover {
-  --p: 100%;
-  --t: 0.3s;
-  color: #fff;
-  border-color: #58cb73;
-  box-shadow: 0 0 15px rgba(57, 179, 63, 0.6),
-              0 0 30px rgba(63, 207, 61, 0.2);
+.search-bar button:hover::before {
+  left: 100%;
+}
+
+.search-bar button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(63, 207, 61, 0.5),
+    0 0 40px rgba(63, 207, 61, 0.3),
+    0 0 60px rgba(63, 207, 61, 0.1);
+  background: linear-gradient(135deg, #45e045 0%, #3fcf3d 50%, #2eb82e 100%);
+}
+
+.search-bar button:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 4px 15px rgba(63, 207, 61, 0.4);
 }
 
 /* ===================== HERO BUTTONS ===================== */
@@ -298,6 +353,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
