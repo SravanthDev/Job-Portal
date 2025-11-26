@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing/Landing.jsx';
+import JobsPage from './pages/Landing/JobsPage.jsx';
+import RealJobsPage from './pages/Landing/RealJobsPage.jsx';
+import CompanyProfilePage from './pages/Landing/CompanyProfilePage.jsx';
 import Auth from './pages/Auth/Auth.jsx';
 import './App.css';
 
@@ -21,8 +25,13 @@ export default function App() {
   }
 
   return (
-    <>
-      <Landing user={user} openAuth={openAuth} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landing user={user} openAuth={openAuth} />} />
+        <Route path="/jobs" element={<JobsPage />} />
+        <Route path="/realjobs" element={<RealJobsPage />} />
+        <Route path="/company/:name" element={<CompanyProfilePage />} />
+      </Routes>
       {authModal.isOpen && (
         <Auth
           initialMode={authModal.mode}
@@ -30,6 +39,6 @@ export default function App() {
           onClose={closeAuth}
         />
       )}
-    </>
+    </Router>
   );
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Landing.css';
 
 function Navbar({ openAuth }) {
@@ -7,7 +8,7 @@ function Navbar({ openAuth }) {
                 <div className="navbar-left">
                     <div className="brand">UDYOGAM</div>
                     <nav className="nav-links">
-                        <a href="#jobs">Jobs</a>
+                        <Link to="/realjobs">Jobs</Link>
                         <a href="#prep">Job Prep</a>
                         <a href="#tools">Resume Tools</a>
                     </nav>
