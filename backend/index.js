@@ -14,8 +14,12 @@ app.use(express.json());
 
 // routes
 const authRoutes = require('./routes/auth');
+const jobRoutes = require('./routes/jobs');
+const realJobsRoutes = require('./routes/realJobs');
 
 app.use('/api/auth', authRoutes);
+app.use('/api/jobs', jobRoutes);
+app.use('/api/realjobs', realJobsRoutes);
 
 app.get('/', (req, res) => res.send({ ok: true }));
 

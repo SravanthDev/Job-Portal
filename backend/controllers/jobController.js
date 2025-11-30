@@ -34,7 +34,6 @@ const createJob = async (req, res) => {
   }
 };
 
-// Get all jobs with optional filters
 const getAllJobs = async (req, res) => {
   try {
     const { search, location, skills } = req.query;
@@ -146,7 +145,6 @@ const updateJob = async (req, res) => {
   }
 };
 
-// Delete job (Recruiter only - own jobs)
 const deleteJob = async (req, res) => {
   try {
     const { id } = req.params;
@@ -178,7 +176,6 @@ const deleteJob = async (req, res) => {
   }
 };
 
-// Get jobs posted by logged-in recruiter
 const getRecruiterJobs = async (req, res) => {
   try {
     if (req.user.role !== 'recruiter') {
@@ -202,11 +199,4 @@ const getRecruiterJobs = async (req, res) => {
   }
 };
 
-module.exports = {
-  createJob,
-  getAllJobs,
-  getJobById,
-  updateJob,
-  deleteJob,
-  getRecruiterJobs
-};
+module.exports = {createJob, getAllJobs, getJobById, updateJob, deleteJob, getRecruiterJobs};
