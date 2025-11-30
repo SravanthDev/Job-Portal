@@ -1,6 +1,4 @@
 const prisma = require('../config/prisma');
-
-// Get user profile
 const getProfile = async (req, res) => {
   try {
     const user = await prisma.user.findUnique({
@@ -26,12 +24,10 @@ const getProfile = async (req, res) => {
   }
 };
 
-// Update user profile
 const updateProfile = async (req, res) => {
   try {
     const { name, email } = req.body;
 
-    // Check if email is already taken by another user
     if (email && email !== req.user.email) {
       const existingUser = await prisma.user.findUnique({
         where: { email }
@@ -65,7 +61,6 @@ const updateProfile = async (req, res) => {
   }
 };
 
-// Upload resume
 const uploadResume = async (req, res) => {
   try {
     if (!req.file) {

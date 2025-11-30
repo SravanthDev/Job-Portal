@@ -1,6 +1,5 @@
 const prisma = require('../config/prisma');
 
-// Create a new job (Recruiter only)
 const createJob = async (req, res) => {
   try {
     const { title, description, skillsRequired, location } = req.body;
@@ -77,7 +76,6 @@ const getAllJobs = async (req, res) => {
   }
 };
 
-// Get single job by ID
 const getJobById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -105,7 +103,6 @@ const getJobById = async (req, res) => {
   }
 };
 
-// Update job (Recruiter only - own jobs)
 const updateJob = async (req, res) => {
   try {
     const { id } = req.params;
