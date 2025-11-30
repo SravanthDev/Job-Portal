@@ -1,37 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,400;1,700&family=Momo+Trust+Display:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
 :root {
-  --primary: #667eea;
-  --secondary: #764ba2;
-  --background: #f5f7fa;
-  --text: #1a1a1a;
-  --text-light: #666;
-  --white: #ffffff;
-  --error: #dc3545;
-  --success: #28a745;
+  --font-sans: "Elms Sans", sans-serif;
+  --breakpoint-3xl: 1920px;
+  --color-primary: #00a7f3;
 }
 
-body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: aliceblue;
+    overflow-x: hidden;
+  }
 }

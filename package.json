@@ -20,15 +20,22 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.18.0",
+    "@tailwindcss/vite": "^4.1.17",
     "axios": "^1.13.2",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "framer-motion": "^12.23.24",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.555.0",
+    "moment": "^2.30.1",
     "multer": "^2.0.2",
     "react": "^19.2.0",
-    "socket.io": "^4.8.1"
+    "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^7.9.6",
+    "socket.io": "^4.8.1",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",
