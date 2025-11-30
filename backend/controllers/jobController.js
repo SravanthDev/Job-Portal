@@ -1,93 +1,202 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../config/prisma');
 
-// Get all jobs with optional filters
+const createJob = async (req, res) => {
+  try {
+    const { title, description, skillsRequired, location } = req.body;
+
+    if (req.user.role !== 'recruiter') {
+      return res.status(403).json({ error: 'Only recruiters can post jobs' });
+    }
+
+    if (!title || !description) {
+      return res.status(400).json({ error: 'Title and description are required' });
+    }
+
+    const job = await prisma.job.create({
+      data: {
+        title,
+        description,
+        skillsRequired: skillsRequired || '',
+        location: location || '',
+        recruiterId: req.user.id
+      },
+      include: {
+        recruiter: {
+          select: { id: true, name: true, email: true }
+        }
+      }
+    });
+
+    res.status(201).json(job);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
 const getAllJobs = async (req, res) => {
-    try {
-        const { keyword, location, skillsRequired, company } = req.query;
+  try {
+    const { search, location, skills } = req.query;
 
-        // Build filter conditions
-        const where = {};
+    const where = {};
 
-        if (keyword) {
-            where.OR = [
-                { title: { contains: keyword } },
-                { description: { contains: keyword } }
-            ];
-        }
-
-        if (location) {
-            where.location = { contains: location };
-        }
-
-        if (skillsRequired) {
-            where.skillsRequired = { contains: skillsRequired };
-        }
-
-        // Filter by company name (searches in recruiter's name)
-        const include = {
-            recruiter: {
-                select: {
-                    id: true,
-                    name: true,
-                    email: true
-                }
-            }
-        };
-
-        const jobs = await prisma.job.findMany({
-            where,
-            include,
-            orderBy: {
-                createdAt: 'desc'
-            }
-        });
-
-        // Filter by company name if provided (client-side filter since it's in related table)
-        let filteredJobs = jobs;
-        if (company) {
-            filteredJobs = jobs.filter(job =>
-                job.recruiter?.name?.toLowerCase().includes(company.toLowerCase())
-            );
-        }
-
-        res.json(filteredJobs);
-    } catch (error) {
-        console.error('Error fetching jobs:', error);
-        res.status(500).json({ error: 'Failed to fetch jobs' });
+    if (search) {
+      where.OR = [
+        { title: { contains: search } },
+        { description: { contains: search } }
+      ];
     }
+
+    if (location) {
+      where.location = { contains: location };
+    }
+
+    if (skills) {
+      where.skillsRequired = { contains: skills };
+    }
+
+    const jobs = await prisma.job.findMany({
+      where,
+      include: {
+        recruiter: {
+          select: { id: true, name: true, email: true }
+        },
+        _count: {
+          select: { applications: true }
+        }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    res.json(jobs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
-// Get single job by ID
 const getJobById = async (req, res) => {
-    try {
-        const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-        const job = await prisma.job.findUnique({
-            where: { id: parseInt(id) },
-            include: {
-                recruiter: {
-                    select: {
-                        id: true,
-                        name: true,
-                        email: true
-                    }
-                }
-            }
-        });
-
-        if (!job) {
-            return res.status(404).json({ error: 'Job not found' });
+    const job = await prisma.job.findUnique({
+      where: { id: parseInt(id) },
+      include: {
+        recruiter: {
+          select: { id: true, name: true, email: true }
+        },
+        _count: {
+          select: { applications: true }
         }
+      }
+    });
 
-        res.json(job);
-    } catch (error) {
-        console.error('Error fetching job:', error);
-        res.status(500).json({ error: 'Failed to fetch job details' });
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' });
     }
+
+    res.json(job);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
-module.exports = {
-    getAllJobs,
-    getJobById
+const updateJob = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, skillsRequired, location } = req.body;
+
+    if (req.user.role !== 'recruiter') {
+      return res.status(403).json({ error: 'Only recruiters can update jobs' });
+    }
+
+    const job = await prisma.job.findUnique({
+      where: { id: parseInt(id) }
+    });
+
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' });
+    }
+
+    if (job.recruiterId !== req.user.id) {
+      return res.status(403).json({ error: 'You can only update your own jobs' });
+    }
+
+    const updatedJob = await prisma.job.update({
+      where: { id: parseInt(id) },
+      data: {
+        title: title || job.title,
+        description: description || job.description,
+        skillsRequired: skillsRequired !== undefined ? skillsRequired : job.skillsRequired,
+        location: location !== undefined ? location : job.location
+      },
+      include: {
+        recruiter: {
+          select: { id: true, name: true, email: true }
+        }
+      }
+    });
+
+    res.json(updatedJob);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
+
+const deleteJob = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (req.user.role !== 'recruiter') {
+      return res.status(403).json({ error: 'Only recruiters can delete jobs' });
+    }
+
+    const job = await prisma.job.findUnique({
+      where: { id: parseInt(id) }
+    });
+
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' });
+    }
+
+    if (job.recruiterId !== req.user.id) {
+      return res.status(403).json({ error: 'You can only delete your own jobs' });
+    }
+
+    await prisma.job.delete({
+      where: { id: parseInt(id) }
+    });
+
+    res.json({ message: 'Job deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+const getRecruiterJobs = async (req, res) => {
+  try {
+    if (req.user.role !== 'recruiter') {
+      return res.status(403).json({ error: 'Only recruiters can access this endpoint' });
+    }
+
+    const jobs = await prisma.job.findMany({
+      where: { recruiterId: req.user.id },
+      include: {
+        _count: {
+          select: { applications: true }
+        }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    res.json(jobs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+module.exports = {createJob, getAllJobs, getJobById, updateJob, deleteJob, getRecruiterJobs};
