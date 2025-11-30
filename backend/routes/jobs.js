@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getAllJobs, getJobById } = require('../controllers/jobController');
-
-// GET /api/jobs - Get all jobs with optional filters
+const auth = require('../middleware/auth');
+const { createJob, getAllJobs, getJobById, updateJob, deleteJob, getRecruiterJobs } = require('../controllers/jobController');
+router.get('/recruiter/my-jobs', auth, getRecruiterJobs);
+router.post('/', auth, createJob);
+router.put('/:id', auth, updateJob);
+router.delete('/:id', auth, deleteJob);
 router.get('/', getAllJobs);
-
-// GET /api/jobs/:id - Get single job by ID
 router.get('/:id', getJobById);
-
-module.exports = router;
+module.exports = router
