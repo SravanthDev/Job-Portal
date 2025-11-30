@@ -1,43 +1,93 @@
-const prisma = require('../config/prisma');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import bcrypt from 'bcrypt';
+import prisma from '../config/database.js';
+import { generateToken } from '../utils/tokenUtils.js';
+import { validateEmail, validatePassword, validateRequired, validateRole } from '../utils/validation.js';
 
-const register = async (req, res) => {
+export const register = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
-    if (!email || !password) return res.status(400).json({ error: 'Email & pasauthentication failedsword required' });
 
-    const exist = await prisma.user.findUnique({ where: { email } });
-    if (exist) return res.status(400).json({ error: 'Email already used' });
+    const missing = validateRequired(['name', 'email', 'password', 'role'], req.body);
+    if (missing.length > 0) {
+      return res.status(400).json({ error: `Missing required fields: ${missing.join(', ')}` });
+    }
 
-    const passwordHash = await bcrypt.hash(password, 10);
+    if (!validateEmail(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    if (!validatePassword(password)) {
+      return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    }
+
+    if (!validateRole(role)) {
+      return res.status(400).json({ error: 'Invalid role. Must be JOB_SEEKER or RECRUITER' });
+    }
+
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User with this email already exists' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await prisma.user.create({
-      data: { name, email, passwordHash, role }
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+        role
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true
+      }
     });
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-    res.json({ token, user: { id: user.id, email: user.email, name: user.name, role: user.role } });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    const token = generateToken(user);
+
+    res.status(201).json({
+      message: 'User registered successfully',
+      user,
+      token
+    });
+  } catch (error) {
+    next(error);
   }
 };
 
-const login = async (req, res) => {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+
+    const missing = validateRequired(['email', 'password'], req.body);
+    if (missing.length > 0) {
+      return res.status(400).json({ error: `Missing required fields: ${missing.join(', ')}` });
+    }
+
     const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) return res.status(400).json({ error: 'Invalid credentials' });
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
 
-    const ok = await bcrypt.compare(password, user.passwordHash);
-    if (!ok) return res.status(400).json({ error: 'Invalid credentials' });
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-    res.json({ token, user: { id: user.id, email: user.email, name: user.name, role: user.role } });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    const token = generateToken(user);
+
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.json({
+      message: 'Login successful',
+      user: userWithoutPassword,
+      token
+    });
+  } catch (error) {
+    next(error);
   }
 };
-
-module.exports = { register, login };
