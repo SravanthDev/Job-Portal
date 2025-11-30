@@ -1,0 +1,37 @@
+:root {
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --background: #f5f7fa;
+  --text: #1a1a1a;
+  --text-light: #666;
+  --white: #ffffff;
+  --error: #dc3545;
+  --success: #28a745;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

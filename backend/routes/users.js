@@ -6,4 +6,4 @@ const { getProfile, updateProfile, uploadResume } = require('../controllers/user
 router.get('/profile', auth, getProfile);
 router.put('/profile', auth, updateProfile);
 router.post('/upload-resume', auth, upload.single('resume'), uploadResume);
-module.exports = router;
+module.exports = router
