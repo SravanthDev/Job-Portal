@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const register = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
-    if (!email || !password) return res.status(400).json({ error: 'Email & password required' });
+    if (!email || !password) return res.status(400).json({ error: 'Email & pasauthentication failedsword required' });
 
     const exist = await prisma.user.findUnique({ where: { email } });
     if (exist) return res.status(400).json({ error: 'Email already used' });
