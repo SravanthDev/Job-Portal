@@ -1,10 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-
+// Prisma Schema for Job Portal Application
 
 generator client {
   provider = "prisma-client-js"
@@ -16,47 +10,57 @@ datasource db {
 }
 
 model User {
-  id           Int        @id @default(autoincrement())
-  name         String
-  email        String     @unique
-  passwordHash String
-  role         Role       @default(job_seeker)
-  resumeUrl    String?
-  createdAt    DateTime   @default(now())
-  jobs         Job[]      @relation("RecruiterJobs")
-  applications Application[]
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole
+  resumeUrl String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  postedJobs   Job[]         @relation("RecruiterJobs")
+  applications Application[] @relation("JobSeekerApplications")
+
+  @@map("users")
 }
 
 model Job {
-  id            Int         @id @default(autoincrement())
-  recruiter     User        @relation("RecruiterJobs", fields: [recruiterId], references: [id])
-  recruiterId   Int
-  title         String
-  description   String
-  skillsRequired String?
-  location      String?
-  createdAt     DateTime    @default(now())
-  applications  Application[]
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @db.Text
+  skills      String   @db.Text // comma-separated skills
+  location    String
+  postedById  Int
+  createdAt   DateTime @default(now())
+
+  postedBy     User          @relation("RecruiterJobs", fields: [postedById], references: [id], onDelete: Cascade)
+  applications Application[] @relation("JobApplications")
+
+  @@map("jobs")
 }
 
 model Application {
-  id         Int       @id @default(autoincrement())
-  user       User      @relation(fields: [userId], references: [id])
-  userId     Int
-  job        Job       @relation(fields: [jobId], references: [id])
-  jobId      Int
-  status     ApplicationStatus @default(Pending)
-  appliedAt  DateTime  @default(now())
+  id        Int               @id @default(autoincrement())
+  jobId     Int
+  userId    Int
+  status    ApplicationStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+
+  job  Job  @relation("JobApplications", fields: [jobId], references: [id], onDelete: Cascade)
+  user User @relation("JobSeekerApplications", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, userId])
+  @@map("applications")
 }
 
-enum Role {
-  recruiter
-  job_seeker
-  admin
+enum UserRole {
+  JOB_SEEKER
+  RECRUITER
 }
 
 enum ApplicationStatus {
-  Pending
-  Shortlisted
-  Rejected
+  PENDING
+  SHORTLISTED
+  REJECTED
 }

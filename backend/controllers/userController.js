@@ -1,99 +1,90 @@
-const prisma = require('../config/prisma');
-const getProfile = async (req, res) => {
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: req.user.id },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        resumeUrl: true,
-        createdAt: true
-      }
-    });
+import prisma from '../config/database.js';
+import fs from 'fs';
+import path from 'path';
 
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+
+export const getProfile = async (req, res, next) => {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: req.user.id },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                resumeUrl: true,
+                createdAt: true
+            }
+        });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({ user });
+    } catch (error) {
+        next(error);
     }
-
-    res.json(user);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
 };
 
-const updateProfile = async (req, res) => {
-  try {
-    const { name, email } = req.body;
 
-    if (email && email !== req.user.email) {
-      const existingUser = await prisma.user.findUnique({
-        where: { email }
-      });
+export const uploadResume = async (req, res, next) => {
+    try {
+        const { resumeUrl } = req.body;
 
-      if (existingUser) {
-        return res.status(400).json({ error: 'Email already in use' });
-      }
+        if (!resumeUrl || !resumeUrl.trim()) {
+            return res.status(400).json({ error: 'Resume URL is required' });
+        }
+
+        const user = await prisma.user.update({
+            where: { id: req.user.id },
+            data: { resumeUrl },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                resumeUrl: true,
+                createdAt: true
+            }
+        });
+
+        res.json({
+            message: 'Resume uploaded successfully',
+            user
+        });
+    } catch (error) {
+        next(error);
     }
-
-    const updatedUser = await prisma.user.update({
-      where: { id: req.user.id },
-      data: {
-        name: name || req.user.name,
-        email: email || req.user.email
-      },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        resumeUrl: true,
-        createdAt: true
-      }
-    });
-
-    res.json(updatedUser);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
 };
 
-const uploadResume = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
+
+export const uploadResumeFile = async (req, res, next) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        const resumeUrl = `/uploads/${req.file.filename}`;
+
+        const user = await prisma.user.update({
+            where: { id: req.user.id },
+            data: { resumeUrl },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                resumeUrl: true,
+                createdAt: true
+            }
+        });
+
+        res.json({
+            message: 'Resume file uploaded successfully',
+            user
+        });
+    } catch (error) {
+        next(error);
     }
-
-    // Construct the resume URL
-    const resumeUrl = `/uploads/${req.file.filename}`;
-
-    const updatedUser = await prisma.user.update({
-      where: { id: req.user.id },
-      data: { resumeUrl },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        resumeUrl: true
-      }
-    });
-
-    res.json({
-      message: 'Resume uploaded successfully',
-      user: updatedUser
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
-};
-
-module.exports = {
-  getProfile,
-  updateProfile,
-  uploadResume
 };
