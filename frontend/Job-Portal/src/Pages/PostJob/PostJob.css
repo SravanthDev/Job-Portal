@@ -1,0 +1,181 @@
+/* Post Job Page - UDHYOGAM Theme */
+
+.post-job-page {
+    padding: 80px 0 60px;
+    min-height: calc(100vh - 200px);
+    background-color: var(--color-background);
+}
+
+.post-job-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 48px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+}
+
+.post-job-card h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.post-job-card .text-muted {
+    font-size: 16px;
+    color: #8292a2;
+    margin-bottom: 32px;
+    font-weight: 400;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f1f1f;
+    margin-bottom: 4px;
+}
+
+.required {
+    color: #ff3b30;
+}
+
+.input,
+textarea.input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #1f1f1f;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.input:focus,
+textarea.input:focus {
+    outline: none;
+    border-color: #457eff;
+    box-shadow: 0 0 0 3px rgba(69, 126, 255, 0.1);
+}
+
+.input::placeholder,
+textarea.input::placeholder {
+    color: #8292a2;
+}
+
+textarea.input {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.form-actions button {
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .post-job-card {
+        max-width: 90%;
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .post-job-page {
+        padding: 60px 0 40px;
+    }
+
+    .post-job-card {
+        max-width: 100%;
+        padding: 32px 24px;
+        margin: 0 16px;
+    }
+
+    .post-job-card h1 {
+        font-size: 26px;
+    }
+
+    .post-job-card .text-muted {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+
+    form {
+        gap: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-job-page {
+        padding: 50px 0 30px;
+    }
+
+    .post-job-card {
+        padding: 24px 20px;
+        margin: 0 10px;
+    }
+
+    .post-job-card h1 {
+        font-size: 22px;
+    }
+
+    .post-job-card .text-muted {
+        font-size: 13px;
+    }
+
+    .input,
+    textarea.input {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .form-actions {
+        padding-top: 20px;
+    }
+
+    .form-actions button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
