@@ -1,85 +1,150 @@
 .applicants-page {
-    padding: var(--spacing-xl) 0;
+    padding: 40px 0;
     min-height: calc(100vh - 200px);
+    background-color: var(--color-background);
 }
 
 .job-info {
-    margin: var(--spacing-xl) 0;
+    margin-bottom: 40px;
+    background: var(--color-white);
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
 }
 
 .job-info h1 {
-    margin-bottom: var(--spacing-sm);
+    margin: 0 0 8px 0;
+    color: var(--color-text-main);
+    font-size: 1.5rem;
 }
 
 .applicants-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
 }
 
 .applicant-card {
-    transition: var(--transition);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .applicant-card:hover {
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-color: var(--color-primary);
 }
 
 .applicant-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-md);
-    border-bottom: 1px solid var(--gray-200);
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.applicant-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.applicant-info {
+    flex: 1;
+    min-width: 0;
 }
 
 .applicant-info h3 {
-    margin: 0 0 var(--spacing-xs) 0;
-    color: var(--gray-900);
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--color-text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.applicant-info p {
+    margin: 2px 0 0 0;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .applicant-details {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 24px;
+    flex: 1;
 }
 
-.applicant-details p {
-    margin-bottom: var(--spacing-sm);
-    color: var(--gray-700);
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--color-text-main);
 }
 
-.applicant-details a {
-    color: #4F46E5;
-    font-weight: 600;
+.detail-icon {
+    color: var(--color-text-muted);
 }
 
-.resume-download-link {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #10b981;
-    color: white !important;
-    border-radius: 8px;
+.resume-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-primary);
+    font-weight: 500;
     text-decoration: none;
+    padding: 6px 12px;
+    background: var(--color-off-white);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    transition: background 0.2s;
+    margin-top: 4px;
 }
 
-.resume-download-link:hover {
-    background-color: #059669;
+.resume-link:hover {
+    background: var(--color-light-grey);
     text-decoration: none;
 }
 
 .applicant-actions {
-    display: flex;
-    gap: var(--spacing-sm);
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.applicant-actions button {
+    width: 100%;
+    justify-content: center;
 }
 
 .status-badge {
-    padding: 6px 16px;
-    border-radius: var(--radius);
-    font-size: 0.875rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
     font-weight: 600;
-    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .status-pending {
@@ -95,14 +160,4 @@
 .status-rejected {
     background-color: #FEE2E2;
     color: #991B1B;
-}
-
-@media (max-width: 768px) {
-    .applicant-header {
-        flex-direction: column;
-    }
-
-    .applicant-actions {
-        flex-direction: column;
-    }
 }

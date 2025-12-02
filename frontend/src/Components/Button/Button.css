@@ -1,4 +1,4 @@
-/* UDHYOGAM-inspired Button Styles */
+/* Monochrome Button Styles */
 
 .btn {
     padding: 12px 24px;
@@ -7,7 +7,7 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     letter-spacing: 0.02em;
 }
 
@@ -21,59 +21,57 @@
     background-color: var(--color-black);
     color: var(--color-white);
     border-color: var(--color-black);
-    
 }
 
 .btn-primary:hover:not(:disabled) {
-    background-color: #2557d6;
-    border-color: #2557d6;
+    background-color: var(--color-dark-grey);
+    border-color: var(--color-dark-grey);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(69, 126, 255, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary {
-    background-color: #FFFFFF;
-    color: #275DF5;
-    border-color: #e0e0e0;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-color: var(--color-light-grey);
 }
 
 .btn-secondary:hover:not(:disabled) {
-    background-color: #f0f4ff;
-    border-color: #275DF5;
+    background-color: var(--color-off-white);
+    border-color: var(--color-mid-grey);
 }
 
 .btn-success {
-    background-color: #275DF5;
-    color: #FFFFFF;
-    border-color: #275DF5;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-black);
 }
 
 .btn-success:hover:not(:disabled) {
-    background-color: #1a4acc;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(39, 93, 245, 0.3);
+    background-color: var(--color-dark-grey);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-danger {
-    background-color: #FFFFFF;
-    color: #e74c3c;
-    border-color: #e74c3c;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-color: var(--color-black);
 }
 
 .btn-danger:hover:not(:disabled) {
-    background-color: #e74c3c;
-    color: #FFFFFF;
+    background-color: var(--color-off-white);
+    color: var(--color-black);
 }
 
 .btn-outline {
     background-color: transparent;
-    border: 2px solid #275DF5;
-    color: #275DF5;
+    border: 2px solid var(--color-black);
+    color: var(--color-black);
 }
 
 .btn-outline:hover:not(:disabled) {
-    background-color: #f0f4ff;
-    color: #275DF5;
+    background-color: var(--color-off-white);
     transform: translateY(-2px);
 }
 
