@@ -28,17 +28,17 @@ const Home = () => {
     const { isAuthenticated, isJobSeeker, isRecruiter } = useAuth();
 
     const companies = [
-        { name: 'Flipkart', logo: '/src/assets/Flipkartlogo.png', href: 'https://www.flipkart.com' },
-        { name: 'BigBasket', logo: '/src/assets/bigbasketlogo.png', href: 'https://www.bigbasket.com' },
-        { name: 'Jio', logo: '/src/assets/jiologo.png', href: 'https://www.jio.com' },
-        { name: 'HDFC', logo: '/src/assets/hdfclogo.png', href: 'https://www.hdfcbank.com' },
-        { name: 'Urban Company', logo: '/src/assets/urbancompany.png', href: 'https://www.urbancompany.com' },
-        { name: 'Zomato', logo: '/src/assets/zomatologo.png', href: 'https://www.zomato.com' },
-        { name: 'Uber', logo: '/src/assets/blinkit.png', href: 'https://www.blinkit.com' },
-        { name: 'Tech Mahindra', logo: '/src/assets/TechMahindra.png', href: 'https://www.techmahindra.com' },
-        { name: 'NST', logo: '/src/assets/NSTlogo.png', href: 'https://www.newtonschool.co/newton-school-of-technology-nst/home' },
-        { name: 'Swiggy', logo: '/src/assets/swiggylogo.png', href: 'https://www.swiggy.com' },
-        { name: 'Sozou', logo: '/src/assets/sozoulogo.jpeg', href: 'https://www.sozou.in' }
+        { name: 'Flipkart', logo: '/images/Flipkartlogo.png', href: 'https://www.flipkart.com' },
+        { name: 'BigBasket', logo: '/images/bigbasketlogo.png', href: 'https://www.bigbasket.com' },
+        { name: 'Jio', logo: '/images/jiologo.png', href: 'https://www.jio.com' },
+        { name: 'HDFC', logo: '/images/hdfclogo.png', href: 'https://www.hdfcbank.com' },
+        { name: 'Urban Company', logo: '/images/urbancompany.png', href: 'https://www.urbancompany.com' },
+        { name: 'Zomato', logo: '/images/zomatologo.png', href: 'https://www.zomato.com' },
+        { name: 'Uber', logo: '/images/blinkit.png', href: 'https://www.blinkit.com' },
+        { name: 'Tech Mahindra', logo: '/images/TechMahindra.png', href: 'https://www.techmahindra.com' },
+        { name: 'NST', logo: '/images/NSTlogo.png', href: 'https://www.newtonschool.co/newton-school-of-technology-nst/home' },
+        { name: 'Swiggy', logo: '/images/swiggylogo.png', href: 'https://www.swiggy.com' },
+        { name: 'Sozou', logo: '/images/sozoulogo.jpeg', href: 'https://www.sozou.in' }
     ];
 
     return (
