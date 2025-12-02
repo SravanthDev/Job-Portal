@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
 import { applicationAPI, jobAPI } from '../../services/api';
 import Card from '../../Components/Card/Card';
@@ -113,8 +114,8 @@ const Dashboard = () => {
                         <Card>
                             <h3>Quick Actions</h3>
                             <div className="action-buttons">
-                                <a href="/jobs" className="action-link">Browse Jobs</a>
-                                <a href="/my-applications" className="action-link">View Applications</a>
+                                <Link to="/jobs" className="action-link">Browse Jobs</Link>
+                                <Link to="/my-applications" className="action-link">View Applications</Link>
                             </div>
                         </Card>
                     )}
@@ -123,8 +124,8 @@ const Dashboard = () => {
                         <Card>
                             <h3>Quick Actions</h3>
                             <div className="action-buttons">
-                                <a href="/post-job" className="action-link">Post New Job</a>
-                                <a href="/my-jobs" className="action-link">Manage Jobs</a>
+                                <Link to="/post-job" className="action-link">Post New Job</Link>
+                                <Link to="/my-jobs" className="action-link">Manage Jobs</Link>
                             </div>
                         </Card>
                     )}
