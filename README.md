@@ -45,7 +45,6 @@ A modern, full-featured job portal built with the MERN stack (MongoDB/PostgreSQL
 - **Framer Motion** - Smooth animations
 - **React Hot Toast** - Elegant notifications
 - **Lucide React** - Beautiful icons
-- **Tailwind CSS** - Utility-first CSS framework
 
 ### Backend
 - **Node.js** - JavaScript runtime
@@ -71,13 +70,13 @@ Before you begin, ensure you have the following installed:
 
 ## 🚀 Getting Started
 
-### 1️⃣ Clone the Repository
+### Clone the Repository
 ```bash
 git clone https://github.com/SravanthDev/Job-Portal.git
 cd Job-Portal
 ```
 
-### 2️⃣ Backend Setup
+### Backend Setup
 
 #### Install Dependencies
 ```bash
@@ -130,7 +129,7 @@ npm run dev
 
 The backend will start on `http://localhost:5001`
 
-### 3️⃣ Frontend Setup
+###  Frontend Setup
 
 #### Install Dependencies
 ```bash
