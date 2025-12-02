@@ -1,0 +1,66 @@
+/* UDHYOGAM-inspired Input Styles */
+
+.input-group {
+    margin-bottom: 0;
+}
+
+.input-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1f1f1f;
+    font-size: 13px;
+}
+
+.required {
+    color: #e74c3c;
+    margin-left: 2px;
+}
+
+.input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #FFFFFF;
+    transition: all 0.2s ease;
+    color: #1f1f1f;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #457eff;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(69, 126, 255, 0.1);
+}
+
+.input::placeholder {
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+.input-error {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+}
+
+.input-error:focus {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+textarea.input {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.5;
+}
