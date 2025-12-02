@@ -1,21 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import { AuthProvider } from './Context/AuthContext';
+import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 
 // Pages
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import Jobs from './pages/Jobs/Jobs';
-import JobDetail from './pages/JobDetail/JobDetail';
-import Dashboard from './pages/Dashboard/Dashboard';
-import MyApplications from './pages/MyApplications/MyApplications';
-import UploadResume from './pages/UploadResume/UploadResume';
-import PostJob from './pages/PostJob/PostJob';
-import MyJobs from './pages/MyJobs/MyJobs';
-import Applicants from './pages/Applicants/Applicants';
+import Home from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Jobs from './Pages/Jobs/Jobs';
+import JobDetail from './Pages/JobDetail/JobDetail';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import MyApplications from './Pages/MyApplications/MyApplications';
+import UploadResume from './Pages/UploadResume/UploadResume';
+import PostJob from './Pages/PostJob/PostJob';
+import MyJobs from './Pages/MyJobs/MyJobs';
+import Applicants from './Pages/Applicants/Applicants';
 
 import './App.css';
 
