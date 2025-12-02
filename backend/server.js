@@ -27,8 +27,7 @@ const __dirname = path.dirname(__filename);
 const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
-    // Add your Vercel deployment URL here after deployment
-    // Example: 'https://job-portal-xyz.vercel.app'
+    'https://job-portal-hazel-phi.vercel.app', // Your Vercel frontend URL
 ];
 
 // In production, allow the frontend URL from environment variable
