@@ -1,64 +1,113 @@
-import React from "react";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Navigate
-} from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-import LandingPage from "./Pages/LandingPage/LandingPage";
-import Signup from "./Pages/Auth/signup";
-import Login from "./Pages/Auth/login";
-import JobSeekerDashboard from "./Pages/JobSeeker/JobSeekerDashboard";
-import JobDetails from "./Pages/JobSeeker/JobDetails";
-import SavedJobs from "./Pages/JobSeeker/SavedJobs";
-import Profile from "./Pages/JobSeeker/UserProfile";
-import ProtectedRoute from "./routes/ProtectedRoute";
-import EmployerDashboard from "./Pages/Employer/EmployerDashboard";
-import JobPostingForm from "./Pages/Employer/JobPostingForm";
-import ManageJobs from "./Pages/Employer/ManageJob";
-import ApplicantionViewer from "./Pages/Employer/ApplicationViewer";
-import EmployerProfilePage from "./Pages/Employer/EmployerProfilePage";
-const App = () => {
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+
+// Pages
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Jobs from './pages/Jobs/Jobs';
+import JobDetail from './pages/JobDetail/JobDetail';
+import Dashboard from './pages/Dashboard/Dashboard';
+import MyApplications from './pages/MyApplications/MyApplications';
+import UploadResume from './pages/UploadResume/UploadResume';
+import PostJob from './pages/PostJob/PostJob';
+import MyJobs from './pages/MyJobs/MyJobs';
+import Applicants from './pages/Applicants/Applicants';
+
+import './App.css';
+
+function App() {
     return (
-        <div>
+        <AuthProvider>
             <Router>
-                <Routes>
-                    {/* Public Routes */}
-                    <Route path="/" element={<LandingPage />}/>
-                    <Route path="/signup" element={<Signup />}/>
-                    <Route path="/login" element={<Login />}/>
-                    <Route path="/find-jobs" element={<JobSeekerDashboard />}/>
-                    <Route path="/job/:jobId" element={<JobDetails />}/>
-                    <Route path = "/saved-jobs" element={<SavedJobs />}/>
-                    <Route path = "/profile" element={<Profile />}/>
+                <div className="app">
+                    <Navbar />
+                    <main className="main-content">
+                        <Routes>
+                            {/* Public Routes */}
+                            <Route path="/" element={<Home />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/jobs" element={<Jobs />} />
+                            <Route path="/jobs/:id" element={<JobDetail />} />
 
-                    {/* Protected Routes */}
-                    <Route element={<ProtectedRoute requiredRole="employer"/>}/>
-                    <Route path = "/employer-dashboard" element={<EmployerDashboard />}/>
-                    <Route path="/post-job" element={<JobPostingForm/>}/>
-                    <Route path="/manage-jobs" element={<ManageJobs/>}/>
-                    <Route path="/applicants" element={<ApplicantionViewer/>}/>
-                    <Route path="/company-profile" element={<EmployerProfilePage/>}/>
+                            {/* Protected Routes - All Authenticated Users */}
+                            <Route
+                                path="/dashboard"
+                                element={
+                                    <ProtectedRoute>
+                                        <Dashboard />
+                                    </ProtectedRoute>
+                                }
+                            />
 
+                            {/* Job Seeker Routes */}
+                            <Route
+                                path="/my-applications"
+                                element={
+                                    <ProtectedRoute requiredRole="JOB_SEEKER">
+                                        <MyApplications />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/upload-resume"
+                                element={
+                                    <ProtectedRoute requiredRole="JOB_SEEKER">
+                                        <UploadResume />
+                                    </ProtectedRoute>
+                                }
+                            />
 
+                            {/* Recruiter Routes */}
+                            <Route
+                                path="/post-job"
+                                element={
+                                    <ProtectedRoute requiredRole="RECRUITER">
+                                        <PostJob />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/my-jobs"
+                                element={
+                                    <ProtectedRoute requiredRole="RECRUITER">
+                                        <MyJobs />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/applicants/:jobId"
+                                element={
+                                    <ProtectedRoute requiredRole="RECRUITER">
+                                        <Applicants />
+                                    </ProtectedRoute>
+                                }
+                            />
 
-                    {/* Catch all route*/}
-                    <Route path="*" element={<Navigate to="/" replace/>}/>
-
-                </Routes>
+                            {/* 404 */}
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </main>
+                    <Footer />
+                </div>
             </Router>
-            <Toaster
-            toastOptions={{
-                className :"",
-                style:{
-                    fontSize: "13px",
-                    
-                }
-            }}
-            />
+        </AuthProvider>
+    );
+}
+
+// Simple 404 component
+function NotFound() {
+    return (
+        <div className="container" style={{ padding: '60px 24px', textAlign: 'center' }}>
+            <h1>404 - Page Not Found</h1>
+            <p>The page you're looking for doesn't exist.</p>
+            <a href="/">Go Home</a>
         </div>
     );
-};
+}
 
 export default App;

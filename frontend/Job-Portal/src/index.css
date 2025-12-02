@@ -1,17 +1,100 @@
-@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,400;1,700&family=Momo+Trust+Display:wght@400;700&display=swap');
-
-@import "tailwindcss";
+/* ============================================
+   MONOCHROME GLOBAL STYLES
+   ============================================ */
 
 :root {
-  --font-sans: "Elms Sans", sans-serif;
-  --breakpoint-3xl: 1920px;
-  --color-primary: #00a7f3;
+    /* Monochrome Palette */
+    --color-black: #000000;
+    --color-dark-grey: #333333;
+    --color-mid-grey: #666666;
+    --color-light-grey: #e5e5e5;
+    --color-off-white: #f5f5f5;
+    --color-white: #ffffff;
+    --color-cream: #FAF3E1;
+    
+    /* Semantic Colors */
+    --color-primary: var(--color-black);
+    --color-secondary: var(--color-white);
+    --color-text-main: var(--color-black);
+    --color-text-muted: var(--color-mid-grey);
+    --color-border: var(--color-light-grey);
+    --color-background: var(--color-cream);
 }
 
-@layer base {
-  body {
-    font-family: var(--font-sans);
-    background-color: aliceblue;
-    overflow-x: hidden;
-  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-black);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+p {
+    margin-bottom: 16px;
+    color: var(--color-text-muted);
+}
+
+a {
+    color: var(--color-black);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-muted { color: var(--color-text-muted); }
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+    .container { padding: 0 16px; }
 }
