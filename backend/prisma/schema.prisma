@@ -1,14 +1,18 @@
 // Prisma Schema for Job Portal Application
 
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
+
+// User model with role-based access
 model User {
   id        Int      @id @default(autoincrement())
   name      String
@@ -25,6 +29,7 @@ model User {
   @@map("users")
 }
 
+// Job model posted by recruiters
 model Job {
   id          Int      @id @default(autoincrement())
   title       String
@@ -34,12 +39,14 @@ model Job {
   postedById  Int
   createdAt   DateTime @default(now())
 
+  // Relations
   postedBy     User          @relation("RecruiterJobs", fields: [postedById], references: [id], onDelete: Cascade)
   applications Application[] @relation("JobApplications")
 
   @@map("jobs")
 }
 
+// Application model linking job seekers to jobs
 model Application {
   id        Int               @id @default(autoincrement())
   jobId     Int
@@ -47,13 +54,16 @@ model Application {
   status    ApplicationStatus @default(PENDING)
   createdAt DateTime          @default(now())
 
+  // Relations
   job  Job  @relation("JobApplications", fields: [jobId], references: [id], onDelete: Cascade)
   user User @relation("JobSeekerApplications", fields: [userId], references: [id], onDelete: Cascade)
 
+  // Prevent duplicate applications
   @@unique([jobId, userId])
   @@map("applications")
 }
 
+// Enums
 enum UserRole {
   JOB_SEEKER
   RECRUITER
