@@ -1,0 +1,187 @@
+/* Upload Resume - Clean Professional UI */
+
+.upload-resume-page {
+  min-height: 100vh;
+  background-color: #FAF3E1;
+  padding: 80px 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-resume-page .container {
+  width: 100%;
+  max-width: 650px;
+  padding: 0;
+}
+
+.upload-card {
+  width: 100%;
+  background: white;
+  border-radius: 20px;
+  padding: 48px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e5e5e5;
+}
+
+.upload-card h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #222222;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.upload-card .text-muted {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666666;
+  margin-bottom: 40px;
+}
+
+/* Current Resume Section */
+.current-resume {
+  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+  border: 2px solid #10B981;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.current-resume p {
+  margin-bottom: 8px;
+  color: #065F46;
+  font-weight: 600;
+}
+
+.current-resume a {
+  color: #059669;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.current-resume a:hover {
+  color: #047857;
+}
+
+/* File Input Container */
+.file-input-container {
+  margin-bottom: 32px;
+}
+
+.file-label {
+  display: block;
+  cursor: pointer;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-button {
+  display: block;
+  width: 100%;
+  padding: 32px;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+  color: #222222;
+  border: 3px dashed #999999;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.file-button:hover {
+  background: linear-gradient(135deg, #e5e5e5 0%, #d5d5d5 100%);
+  border-color: #222222;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+/* File Info */
+.file-info {
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border-radius: 12px;
+  border: 2px solid #F59E0B;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+.file-info p {
+  margin-bottom: 8px;
+  color: #92400E;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.file-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* Upload Info */
+.upload-info {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border: 2px solid #3B82F6;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.upload-info p {
+  margin-bottom: 8px;
+  color: #1E40AF;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.upload-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.form-actions button {
+  min-width: 160px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upload-resume-page {
+    padding: 60px 20px 40px;
+  }
+
+  .upload-card {
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+
+  .upload-card h1 {
+    font-size: 2rem;
+  }
+
+  .file-button {
+    padding: 24px;
+    font-size: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
