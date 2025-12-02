@@ -5,7 +5,7 @@ import {
     getJobApplications,
     updateApplicationStatus
 } from '../controllers/applicationController.js';
-import { authenticate, authorize } from '../middlewares/authMiddleware.js';
+import { authenticate, authorize } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 

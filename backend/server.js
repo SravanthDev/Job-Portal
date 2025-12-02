@@ -8,10 +8,10 @@ import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import jobRoutes from './routes/jobRoutes.js';
-import applicationRoutes from './routes/applicationRoutes.js';
+import applicationRoutes from './routes/applicationsRoutes.js';
 
 
-import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
+import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 
 dotenv.config();
