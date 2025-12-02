@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 
 // Protected Route - Checks authentication and role before allowing access
 const ProtectedRoute = ({ children, requiredRole }) => {

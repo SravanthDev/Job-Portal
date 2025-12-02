@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jobAPI } from '../../services/api';
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
+import Button from '../../Components/Button/Button';
+import Card from '../../Components/Card/Card';
 import './Jobs.css';
 
 // Jobs Page Component - Shows all available jobs

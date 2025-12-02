@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jobAPI } from '../../services/api';
-import { useAuth } from '../../context/AuthContext';
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
-import Alert from '../../components/Alert/Alert';
+import { useAuth } from '../../Context/AuthContext';
+import Button from '../../Components/Button/Button';
+import Card from '../../Components/Card/Card';
+import Alert from '../../Components/Alert/Alert';
 import './MyJobs.css';
 
 const MyJobs = () => {

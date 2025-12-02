@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { applicationAPI, jobAPI } from '../../services/api';
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
-import Alert from '../../components/Alert/Alert';
+import Button from '../../Components/Button/Button';
+import Card from '../../Components/Card/Card';
+import Alert from '../../Components/Alert/Alert';
 import './Applicants.css';
 
 const Applicants = () => {

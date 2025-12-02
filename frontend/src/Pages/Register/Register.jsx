@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authAPI } from '../../services/api';
-import { useAuth } from '../../context/AuthContext';
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
-import Alert from '../../components/Alert/Alert';
+import { useAuth } from '../../Context/AuthContext';
+import Input from '../../Components/Input/Input';
+import Button from '../../Components/Button/Button';
+import Alert from '../../Components/Alert/Alert';
 import './Register.css';
 
 const Register = () => {

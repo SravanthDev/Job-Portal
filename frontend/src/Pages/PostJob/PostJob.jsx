@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jobAPI } from '../../services/api';
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
-import Alert from '../../components/Alert/Alert';
+import Input from '../../Components/Input/Input';
+import Button from '../../Components/Button/Button';
+import Card from '../../Components/Card/Card';
+import Alert from '../../Components/Alert/Alert';
 import './PostJob.css';
 
 const PostJob = () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { applicationAPI } from '../../services/api';
-import Card from '../../components/Card/Card';
+import Card from '../../Components/Card/Card';
 import './MyApplications.css';
 
 const MyApplications = () => {

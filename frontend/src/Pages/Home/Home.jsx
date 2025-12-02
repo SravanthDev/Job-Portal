@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import Button from '../../components/Button/Button';
+import { useAuth } from '../../Context/AuthContext';
+import Button from '../../Components/Button/Button';
 import './Home.css';
 
 // CompanyCarousel Component
