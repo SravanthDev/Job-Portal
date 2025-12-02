@@ -1,0 +1,102 @@
+/* UDHYOGAM-inspired Button Styles */
+
+.btn {
+    padding: 12px 24px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.02em;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Button colors */
+.btn-primary {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-black);
+    
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #2557d6;
+    border-color: #2557d6;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(69, 126, 255, 0.25);
+}
+
+.btn-secondary {
+    background-color: #FFFFFF;
+    color: #275DF5;
+    border-color: #e0e0e0;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #f0f4ff;
+    border-color: #275DF5;
+}
+
+.btn-success {
+    background-color: #275DF5;
+    color: #FFFFFF;
+    border-color: #275DF5;
+}
+
+.btn-success:hover:not(:disabled) {
+    background-color: #1a4acc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 93, 245, 0.3);
+}
+
+.btn-danger {
+    background-color: #FFFFFF;
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background-color: #e74c3c;
+    color: #FFFFFF;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #275DF5;
+    color: #275DF5;
+}
+
+.btn-outline:hover:not(:disabled) {
+    background-color: #f0f4ff;
+    color: #275DF5;
+    transform: translateY(-2px);
+}
+
+/* Button sizes */
+.btn-small {
+    padding: 8px 20px;
+    font-size: 13px;
+    border-radius: 18px;
+}
+
+.btn-medium {
+    padding: 12px 24px;
+    font-size: 14px;
+    border-radius: 20px;
+}
+
+.btn-large {
+    padding: 14px 32px;
+    font-size: 16px;
+    border-radius: 24px;
+    font-weight: 600;
+}
+
+.btn-full {
+    width: 100%;
+}
