@@ -1,0 +1,108 @@
+.applicants-page {
+    padding: var(--spacing-xl) 0;
+    min-height: calc(100vh - 200px);
+}
+
+.job-info {
+    margin: var(--spacing-xl) 0;
+}
+
+.job-info h1 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.applicants-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.applicant-card {
+    transition: var(--transition);
+}
+
+.applicant-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.applicant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.applicant-info h3 {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--gray-900);
+}
+
+.applicant-details {
+    margin-bottom: var(--spacing-md);
+}
+
+.applicant-details p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--gray-700);
+}
+
+.applicant-details a {
+    color: #4F46E5;
+    font-weight: 600;
+}
+
+.resume-download-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #10b981;
+    color: white !important;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.resume-download-link:hover {
+    background-color: #059669;
+    text-decoration: none;
+}
+
+.applicant-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.status-badge {
+    padding: 6px 16px;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-pending {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.status-shortlisted {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.status-rejected {
+    background-color: #FEE2E2;
+    color: #991B1B;
+}
+
+@media (max-width: 768px) {
+    .applicant-header {
+        flex-direction: column;
+    }
+
+    .applicant-actions {
+        flex-direction: column;
+    }
+}
