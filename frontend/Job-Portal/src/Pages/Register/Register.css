@@ -1,0 +1,472 @@
+/* UDHYOGAM-inspired Registration Page Design - Two Column Layout */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 20px 40px;
+    background-color: #FAF3E1;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.auth-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    overflow: visible;
+}
+
+/* Left sidebar - Illustration and benefits */
+.auth-sidebar {
+    background: #FFFFFF;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 8px 0 0 8px;
+    width: 300px;
+    flex-shrink: 0;
+
+}
+
+.auth-sidebar-illustration {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-sidebar-illustration img {
+    max-width: 220px;
+    height: auto;
+}
+
+.auth-sidebar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 20px;
+}
+
+.auth-sidebar-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0;
+}
+
+.auth-sidebar-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #445578;
+    line-height: 1.5;
+}
+
+.auth-sidebar-benefits li::before {
+    content: "✓";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #34c759;
+    color: white;
+    border-radius: 50%;
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* Right side - Form */
+.auth-form-container {
+    background: #ffffff;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    border-radius: 0 8px 8px 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-title {
+    text-align: left;
+    margin-bottom: 4px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f1f1f;
+    letter-spacing: -0.01em;
+}
+
+.auth-subtitle {
+    text-align: left;
+    color: #f9f9f9;
+    margin-bottom: 32px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* Google sign-in section */
+.auth-divider-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.auth-divider-text {
+    font-size: 13px;
+    color: #181717;
+    margin-right: 12px;
+}
+
+.google-signin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    background: white;
+    color: #1f1f1f;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.google-signin-btn:hover {
+    border-color: #457eff;
+    background: #f7f9fc;
+}
+
+.role-select {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.role-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #FFFFFF;
+    gap: 12px;
+}
+
+.role-option-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.role-option-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.role-option:hover {
+    border-color: #457eff;
+    background-color: #f7f9fc;
+}
+
+.role-option input[type="radio"] {
+    margin-right: 0;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    accent-color: #457eff;
+    order: -1;
+}
+
+.role-option input[type="radio"]:checked~.role-option-content span,
+.role-option input[type="radio"]:checked+.role-option-content span {
+    color: #457eff;
+    font-weight: 600;
+}
+
+.role-option:has(input[type="radio"]:checked) {
+    border-color: #457eff;
+    background-color: #f0f5ff;
+}
+
+.role-option-title {
+    color: #1f1f1f;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.role-option-desc {
+    color: #8292a2;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 24px;
+    color: #8292a2;
+    font-size: 14px;
+}
+
+.auth-link a {
+    color: #457eff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.auth-link a:hover {
+    color: #2557d6;
+    text-decoration: underline;
+}
+
+/* Form spacing - UDHYOGAM style compact */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .auth-card {
+        max-width: 95%;
+    }
+
+    .auth-sidebar {
+        width: 280px;
+        padding: 32px 24px;
+    }
+
+    .auth-form-container {
+        padding: 32px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-page {
+        padding: 20px 10px;
+    }
+
+    .auth-card {
+        flex-direction: column;
+        max-width: 100%;
+        margin: 0 10px;
+    }
+
+    .auth-sidebar {
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+        padding: 24px 20px;
+    }
+
+    .auth-sidebar-illustration {
+        margin-top: 16px;
+    }
+
+    .auth-sidebar-illustration img {
+        max-width: 180px;
+    }
+
+    .auth-form-container {
+        padding: 24px 20px;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .auth-title {
+        font-size: 22px;
+    }
+
+    .role-select {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-sidebar-title {
+        font-size: 18px;
+    }
+
+    .register-cta-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-page {
+        padding: 10px 5px;
+    }
+
+    .auth-card {
+        margin: 0 5px;
+    }
+
+    .auth-sidebar {
+        padding: 20px 16px;
+    }
+
+    .auth-sidebar-title,
+    .login-sidebar-title {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .auth-sidebar-benefits li {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .auth-sidebar-illustration img {
+        max-width: 150px;
+    }
+
+    .auth-form-container {
+        padding: 20px 16px;
+    }
+
+    .auth-title {
+        font-size: 20px;
+    }
+
+    .auth-subtitle {
+        font-size: 12px;
+    }
+
+    .role-option {
+        padding: 12px;
+    }
+
+    .role-option-icon {
+        font-size: 24px;
+    }
+
+    .role-option-title {
+        font-size: 13px;
+    }
+
+    .role-option-desc {
+        font-size: 11px;
+    }
+}
+
+/* Login Page Specific Styles */
+.login-sidebar-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 24px;
+}
+
+.register-cta-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #457eff;
+    border-radius: 6px;
+    color: #457eff;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    width: fit-content;
+}
+
+.register-cta-btn:hover {
+    background: #457eff;
+    color: white;
+}
+
+.login-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.forgot-password-link {
+    color: #457eff;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+    color: #8292a2;
+    font-size: 13px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.auth-divider span {
+    padding: 0 16px;
+}
+
+.google-signin-btn-full {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    background: white;
+    color: #1f1f1f;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.google-signin-btn-full:hover {
+    border-color: #457eff;
+    background: #f7f9fc;
+}
