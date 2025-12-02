@@ -1,0 +1,162 @@
+/* Monochrome Home Page Styles */
+
+.hero {
+  background-color: rgb(250, 243, 225);
+  color: var(--color-white);
+  padding: 120px 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 56px;
+  margin-bottom: 24px;
+  color: #222222;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  margin-bottom: 40px;
+  color: #222222;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #222222;
+}
+
+.features {
+  padding: 100px 0;
+  background-color: var(--color-white);
+}
+
+.features h2 {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.feature-card {
+  text-align: left;
+  padding: 40px;
+  border: 1px solid var(--color-light-grey);
+  border-radius: 4px;
+  background-color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  border-color: var(--color-black);
+  transform: translateY(-4px);
+}
+
+.feature-icon {
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: var(--color-black);
+}
+
+.cta {
+  background-color: #FAF3E1;
+  color: var(--color-black);
+  padding: 100px 0;
+  text-align: center;
+}
+
+.cta h2 {
+  color: var(--color-black);
+  margin-bottom: 16px;
+}
+
+.cta p {
+  font-size: 20px;
+  color: var(--color-mid-grey);
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 24px;
+  }
+}
+
+
+/* Companies carousel */
+.companies {
+  margin: 48px 0 64px;
+  font-size: 20px;
+  background-color: #FAF3E1;
+}
+
+.trusted-companies-heading {
+  text-align: center;
+  color: #222222;
+  margin-bottom: 30px;
+  font-family: "Elms Sans", sans-serif;
+}
+
+.marquee {
+  overflow: hidden;
+}
+
+.company-carousel-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: scroll 28s linear infinite;
+  padding: 12px 0;
+}
+
+.company {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 100px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffffee;
+  padding: 14px;
+}
+
+.company img {
+  max-height: 72px;
+  max-width: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.home {
+  background-color: #FAF3E1;
+}
