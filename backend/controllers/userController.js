@@ -65,7 +65,10 @@ export const uploadResumeFile = async (req, res, next) => {
             return res.status(400).json({ error: 'No file uploaded' });
         }
 
-        const resumeUrl = `/uploads/${req.file.filename}`;
+        // Generate full URL for the resume file
+        const protocol = req.protocol; // http or https
+        const host = req.get('host'); // backend domain
+        const resumeUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
 
         const user = await prisma.user.update({
             where: { id: req.user.id },
