@@ -77,7 +77,7 @@ const UploadResume = () => {
                     {user?.resumeUrl && (
                         <div className="current-resume">
                             <p><strong>Current Resume:</strong></p>
-                            <a href={`http://localhost:5001${user.resumeUrl}`} target="_blank" rel="noopener noreferrer">
+                            <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer">
                                 View Current Resume
                             </a>
                         </div>

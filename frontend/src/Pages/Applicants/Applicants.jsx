@@ -118,7 +118,7 @@ const Applicants = () => {
                                         <p>
                                             <strong>Resume:</strong>{' '}
                                             <a
-                                                href={`${import.meta.env.VITE_API_URL.replace('/api', '')}${application.user.resumeUrl}`}
+                                                href={application.user.resumeUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="resume-download-link"
