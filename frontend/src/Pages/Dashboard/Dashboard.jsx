@@ -9,6 +9,16 @@ const Dashboard = () => {
     const { user, isJobSeeker, isRecruiter } = useAuth();
     const [stats, setStats] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Debug logging
+    console.log('[Dashboard] Rendering with user:', {
+        userId: user?.id,
+        userName: user?.name,
+        userRole: user?.role,
+        isJobSeeker,
+        isRecruiter
+    });
 
     useEffect(() => {
         fetchDashboardData();
@@ -16,20 +26,29 @@ const Dashboard = () => {
 
     const fetchDashboardData = async () => {
         try {
+            console.log('[Dashboard] Fetching data for role:', user?.role);
+
             if (isJobSeeker) {
                 const response = await applicationAPI.getUserApplications();
+                console.log('[Dashboard] Job seeker stats:', response.data.stats);
                 setStats(response.data.stats);
             } else if (isRecruiter) {
                 const response = await jobAPI.getAllJobs();
                 const myJobs = response.data.jobs.filter(job => job.postedBy.id === user.id);
                 const totalApplications = myJobs.reduce((sum, job) => sum + job._count.applications, 0);
-                setStats({
+                const recruiterStats = {
                     totalJobs: myJobs.length,
                     totalApplications
-                });
+                };
+                console.log('[Dashboard] Recruiter stats:', recruiterStats);
+                setStats(recruiterStats);
+            } else {
+                console.warn('[Dashboard] User has no valid role:', user?.role);
+                setError('Invalid user role. Please contact support.');
             }
         } catch (err) {
-            console.error('Failed to fetch dashboard data', err);
+            console.error('[Dashboard] Failed to fetch dashboard data:', err);
+            setError(err.response?.data?.error || 'Failed to load dashboard data');
         } finally {
             setLoading(false);
         }
@@ -39,6 +58,33 @@ const Dashboard = () => {
         return (
             <div className="container" style={{ padding: '60px 24px' }}>
                 <p className="text-center">Loading dashboard...</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="container" style={{ padding: '60px 24px' }}>
+                <div style={{
+                    backgroundColor: '#fee',
+                    border: '1px solid #fcc',
+                    padding: '20px',
+                    borderRadius: '8px',
+                    textAlign: 'center'
+                }}>
+                    <h3 style={{ color: '#c33' }}>Error Loading Dashboard</h3>
+                    <p>{error}</p>
+                    <button
+                        onClick={() => window.location.reload()}
+                        style={{
+                            marginTop: '10px',
+                            padding: '10px 20px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Retry
+                    </button>
+                </div>
             </div>
         );
     }

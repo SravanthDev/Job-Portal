@@ -29,10 +29,20 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = (userData, userToken) => {
+        console.log('[AuthContext] Login called with:', {
+            userId: userData?.id,
+            userName: userData?.name,
+            userRole: userData?.role,
+            hasToken: !!userToken,
+            tokenLength: userToken?.length
+        });
+
         setUser(userData);
         setToken(userToken);
         localStorage.setItem('token', userToken);
         localStorage.setItem('user', JSON.stringify(userData));
+
+        console.log('[AuthContext] User and token saved to state and localStorage');
     };
 
     const logout = () => {

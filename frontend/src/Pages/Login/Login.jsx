@@ -34,11 +34,21 @@ const Login = () => {
         setError('');
         setLoading(true);
 
+        console.log('[Login] Attempting login with email:', formData.email);
+
         try {
             const response = await authAPI.login(formData);
+            console.log('[Login] Login API response:', {
+                user: response.data.user,
+                hasToken: !!response.data.token,
+                tokenLength: response.data.token?.length
+            });
+
             login(response.data.user, response.data.token);
+            console.log('[Login] Auth context updated, navigating to /dashboard');
             navigate('/dashboard');
         } catch (err) {
+            console.error('[Login] Login failed:', err);
             setError(err.response?.data?.error || 'Login failed');
         } finally {
             setLoading(false);
