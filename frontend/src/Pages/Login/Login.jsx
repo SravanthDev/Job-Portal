@@ -7,12 +7,14 @@ import Button from '../../Components/Button/Button';
 import Alert from '../../Components/Alert/Alert';
 import '../Register/Register.css';
 
-// Login Page Component
+import { GoogleLogin } from '@react-oauth/google';
+
+
 const Login = () => {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    // Form state
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -20,7 +22,31 @@ const Login = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    // Handle input changes
+
+    const handleGoogleSuccess = async (response) => {
+        setLoading(true);
+        setError('');
+        try {
+            const res = await authAPI.googleLogin({
+                credential: response.credential,
+                role: 'JOB_SEEKER'
+            });
+
+            login(res.data.user, res.data.token);
+            navigate('/dashboard');
+        } catch (err) {
+            console.error('Google Login Error:', err);
+            setError(err.response?.data?.error || 'Google login failed');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleGoogleError = () => {
+        setError('Google Login Failed');
+    };
+
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -28,7 +54,7 @@ const Login = () => {
         });
     };
 
-    // Handle form submission
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -60,7 +86,6 @@ const Login = () => {
             <div className="auth-page">
                 <div className="container">
                     <div className="auth-card">
-                        {/* Left Sidebar - Benefits and Register CTA */}
                         <div className="auth-sidebar">
                             <h2 className="login-sidebar-title">New to UDHYOGAM?</h2>
                             <ul className="auth-sidebar-benefits">
@@ -77,7 +102,6 @@ const Login = () => {
                             </div>
                         </div>
 
-                        {/* Right Side - Login Form */}
                         <div className="auth-form-container">
                             <h1 className="auth-title">Login</h1>
 
@@ -118,10 +142,15 @@ const Login = () => {
                                     <span>Or</span>
                                 </div>
 
-                                <button type="button" className="google-signin-btn-full">
-                                    <span style={{ fontSize: '18px', marginRight: '8px' }}>G</span>
-                                    Sign in with Google
-                                </button>
+                                <div className="google-login-container" style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <GoogleLogin
+                                        onSuccess={handleGoogleSuccess}
+                                        onError={handleGoogleError}
+                                        theme="outline"
+                                        size="large"
+                                        width="100%"
+                                    />
+                                </div>
                             </form>
                         </div>
                     </div>

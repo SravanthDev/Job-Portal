@@ -7,6 +7,8 @@ import Button from '../../Components/Button/Button';
 import Alert from '../../Components/Alert/Alert';
 import './Register.css';
 
+import { GoogleLogin } from '@react-oauth/google';
+
 const Register = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -26,12 +28,33 @@ const Register = () => {
             [e.target.name]: e.target.value
         });
     };
+    const handleGoogleSuccess = async (response) => {
+        setLoading(true);
+        setError('');
+        try {
+            const res = await authAPI.googleLogin({
+                credential: response.credential,
+                role: formData.role
+            });
+
+            login(res.data.user, res.data.token);
+            navigate('/dashboard');
+        } catch (err) {
+            console.error('Google Register Error:', err);
+            setError(err.response?.data?.error || 'Google registration failed');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleGoogleError = () => {
+        setError('Google Registration Failed');
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
-        // Validation
         if (formData.password !== formData.confirmPassword) {
             setError('Passwords do not match');
             return;
@@ -61,7 +84,6 @@ const Register = () => {
         <div className="auth-page">
             <div className="container">
                 <div className="auth-card">
-                    {/* Left Sidebar - Benefits */}
                     <div className="auth-sidebar">
                         <h2 className="auth-sidebar-title">On registering, you can</h2>
                         <ul className="auth-sidebar-benefits">
@@ -74,7 +96,6 @@ const Register = () => {
                         </div>
                     </div>
 
-                    {/* Right Side - Registration Form */}
                     <div className="auth-form-container">
                         <h1 className="auth-title">Create your UDHYOGAM profile</h1>
                         <p className="auth-subtitle">Search & apply to jobs from India's No.1 Job Site</p>
@@ -159,6 +180,21 @@ const Register = () => {
                             <Button type="submit" fullWidth disabled={loading}>
                                 {loading ? 'Creating Account...' : 'Register now'}
                             </Button>
+
+                            <div className="auth-divider">
+                                <span>Or</span>
+                            </div>
+
+                            <div className="google-login-container" style={{ display: 'flex', justifyContent: 'center' }}>
+                                <GoogleLogin
+                                    onSuccess={handleGoogleSuccess}
+                                    onError={handleGoogleError}
+                                    theme="outline"
+                                    size="large"
+                                    width="100%"
+                                    text="signup_with"
+                                />
+                            </div>
                         </form>
 
                         <p className="auth-link">
