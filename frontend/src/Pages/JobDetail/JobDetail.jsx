@@ -43,6 +43,14 @@ const JobDetail = () => {
         try {
             await applicationAPI.applyForJob(id);
             setHasApplied(true);
+            // Increment the applicant count immediately
+            setJob(prevJob => ({
+                ...prevJob,
+                _count: {
+                    ...prevJob._count,
+                    applications: prevJob._count.applications + 1
+                }
+            }));
             setMessage({ type: 'success', text: 'Application submitted successfully!' });
         } catch (err) {
             setMessage({
