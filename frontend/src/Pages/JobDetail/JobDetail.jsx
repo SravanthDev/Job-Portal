@@ -15,6 +15,7 @@ const JobDetail = () => {
     const [job, setJob] = useState(null);
     const [loading, setLoading] = useState(true);
     const [applying, setApplying] = useState(false);
+    const [hasApplied, setHasApplied] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
 
     useEffect(() => {
@@ -41,6 +42,7 @@ const JobDetail = () => {
         setApplying(true);
         try {
             await applicationAPI.applyForJob(id);
+            setHasApplied(true);
             setMessage({ type: 'success', text: 'Application submitted successfully!' });
         } catch (err) {
             setMessage({
@@ -90,8 +92,8 @@ const JobDetail = () => {
                             <p className="job-location">📍 {job.location}</p>
                         </div>
                         {isJobSeeker && (
-                            <Button onClick={handleApply} disabled={applying} size="large">
-                                {applying ? 'Applying...' : 'Apply Now'}
+                            <Button onClick={handleApply} disabled={applying || hasApplied} size="large">
+                                {hasApplied ? 'Applied' : applying ? 'Applying...' : 'Apply Now'}
                             </Button>
                         )}
                     </div>
