@@ -91,7 +91,21 @@ export const getJobById = async (req, res, next) => {
             return res.status(404).json({ error: 'Job not found' });
         }
 
-        res.json({ job });
+        // Check if the current user has already applied (only if authenticated)
+        let hasApplied = false;
+        if (req.user) {
+            const existingApplication = await prisma.application.findUnique({
+                where: {
+                    jobId_userId: {
+                        jobId: parseInt(id),
+                        userId: req.user.id
+                    }
+                }
+            });
+            hasApplied = !!existingApplication;
+        }
+
+        res.json({ job, hasApplied });
     } catch (error) {
         next(error);
     }

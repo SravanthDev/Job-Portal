@@ -26,6 +26,10 @@ const JobDetail = () => {
         try {
             const response = await jobAPI.getJobById(id);
             setJob(response.data.job);
+            // Set the application status from the backend
+            if (response.data.hasApplied !== undefined) {
+                setHasApplied(response.data.hasApplied);
+            }
         } catch (err) {
             setMessage({ type: 'error', text: 'Failed to load job details' });
         } finally {
