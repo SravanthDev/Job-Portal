@@ -6,13 +6,13 @@ import {
     updateJob,
     deleteJob
 } from '../controllers/jobController.js';
-import { authenticate, authorize } from '../middleware/authMiddleware.js';
+import { authenticate, authorize, optionalAuthenticate } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 router.get('/', getAllJobs);
 
-router.get('/:id', getJobById);
+router.get('/:id', optionalAuthenticate, getJobById);
 
 router.post('/', authenticate, authorize('RECRUITER'), createJob);
 
